@@ -34,8 +34,17 @@ const renderizarLista = (lista) => {
       <div class="text-right">
         <p class="text-yellow-400 font-bold">$${producto.precio.toLocaleString('es-CO', { minimumFractionDigits: 2 })}</p>
         <p class="text-sm text-gray-400">${producto.stock} uds</p>
+        <button class="btn-eliminar bg-red-600 text-white text-xs px-2 py-1 rounded-lg hover:bg-red-500 transition">
+      Eliminar
+    </button>
       </div>
     `;
+    const btnEliminar = cardProducto.querySelector('.btn-eliminar');
+
+    btnEliminar.addEventListener('click', () => {
+      inventario = inventario.filter((productoEnLista) => productoEnLista.id !== producto.id);
+      renderizarLista(inventario);
+    });
 
     areaResultados.appendChild(cardProducto);
   });
@@ -92,5 +101,5 @@ botonesFiltro.forEach((botonActual) => {
     }
 
   });
-  
+
 });
